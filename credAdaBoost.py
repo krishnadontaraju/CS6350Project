@@ -14,7 +14,7 @@ Xs_train = train.iloc[:, :-1].values
 ys_train = train.iloc[:, -1].values
 
 print("Running AdaBoost with incremental estimators and 5-fold CV")
-xs = np.arange(0, 100, 1)
+xs = np.arange(0, 1000, 10)
 xs[0] = 1
 scores = []
 max_score = -1

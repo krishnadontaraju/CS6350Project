@@ -18,8 +18,6 @@ class RegressionDataset(Dataset):
 
         self.xs = np.array(xs)
         self.ys = np.array(ys)
-        print("xs", self.xs)
-        print("ys", self.ys)
 
     def __len__(self):
         return len(self.xs)
@@ -36,11 +34,6 @@ test_data = RegressionDataset('testCred.csv')
 batch_size = 10
 train_dataloader = DataLoader(train_data, batch_size=batch_size)
 test_dataloader = DataLoader(test_data, batch_size=batch_size)
-
-for x, y in test_dataloader:
-    print("x:", x)
-    print("y:", y)
-    break
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using {device} device")
@@ -127,7 +120,7 @@ for ac_fn, init_fn, ac_name in activations:
             model.apply(init_fn)
 
             loss_fn = nn.MSELoss()
-            optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+            optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
             train_losses = np.array([])
             epochs = 15

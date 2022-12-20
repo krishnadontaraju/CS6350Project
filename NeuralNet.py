@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 batch_size = 10
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Using {device} device")
 
 
 class DatasetImporter(Dataset):
@@ -111,11 +110,6 @@ test_data = DatasetImporter('testCred.csv')
 train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
 test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
-for X, y in train_dataloader:
-    print("Shape of X: ", X.shape)
-    print("Shape of y: ", y.shape, y.dtype)
-    break
-
 
 def init_xavier(m):
     if isinstance(m, nn.Linear):
@@ -125,7 +119,6 @@ def init_xavier(m):
 
 model = NeuralNetwork().to(device)
 model.apply(init_xavier)
-print(model)
 
 weights = [1 - 0.75936, 0.75936]
 class_weights = torch.FloatTensor(weights).to(device)
